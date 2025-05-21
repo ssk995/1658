@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivabuy 客服跳转中...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffeb00;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        img {
+            width: 200px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #004AAD;
+        }
+        p {
+            font-size: 16px;
+            color: #333;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #004AAD;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+    </style>
+    <script>
+        const numbers = [
+            "https://wa.me/8615710634668",
+            "https://wa.me/8613800012345",
+            "https://wa.me/8613911122233",
+            "https://wa.me/8615710634667"
+        ];
+
+        let lastIndex = localStorage.getItem("waIndex") || 0;
+        const nextIndex = (parseInt(lastIndex) + 1) % numbers.length;
+        localStorage.setItem("waIndex", nextIndex);
+
+        window.onload = () => {
+            setTimeout(() => {
+                window.location.href = numbers[nextIndex];
+            }, 2000);
+        };
+    </script>
+</head>
+<body>
+    <img src="logo.jpg" alt="Vivabuy Logo">
+    <h1>正在跳转至 Vivabuy 客服 WhatsApp...</h1>
+    <p>如未自动跳转，请点击下方链接：</p>
+    <a id="fallback" href="#">点击手动跳转</a>
+    <script>
+        document.getElementById("fallback").href = numbers[localStorage.getItem("waIndex")];
+    </script>
+</body>
+</html>
